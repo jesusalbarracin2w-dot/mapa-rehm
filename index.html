@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Reserva Horco Molle - Mapa Interactivo</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2e7d32">
+</head>
+<body>
+
+  <!-- HEADER FIJO -->
+  <header class="app-header">
+    <div class="header-top-row">
+      <!-- Logo a un costado -->
+      <img src="assets/images/logo.jpg" alt="Reserva Horco Molle - UNT" class="header-logo-side">
+      
+      <div class="header-titles">
+        <h1>RESERVA HORCO MOLLE</h1>
+        <p id="txt-map-title">Mapa Interactivo</p>
+      </div>
+    </div>
+
+    <!-- Subtítulos dinámicos de circuitos y servicios -->
+    <p id="txt-sub1">Circuito Autoguiado - Toca cada número para explorar</p>
+    <p id="txt-sub2" style="font-size: 0.75rem; opacity: 0.85; margin: 2px 0;">Servicios - Toca cada servicio para explorar</p>
+    
+    <div class="header-buttons">
+      <button id="locate-btn" class="locate-btn-header">📍 Mi Ubicación</button>
+      <button id="lang-toggle-btn" class="locate-btn-header" style="background-color: #1976d2;">🇬🇧 English</button>
+      <button id="help-btn" class="locate-btn-header" style="background-color: #d32f2f;">❓ Ayuda</button>
+    </div>
+  </header>
+
+  <!-- MAPA CON SCROLL INTERNO -->
+  <main>
+    <div id="map-container" class="map-container">
+      
+      <!-- Imagen original del mapa con ID agregado para el cambio de idioma -->
+      <img id="map-img" src="mapa.jpg" alt="Mapa Reserva Horco Molle" class="map-img">
+      
+      <!-- MARCADOR DE LA POSICIÓN DEL USUARIO -->
+      <div id="user-marker" class="user-marker hidden"></div>
+
+      <!-- BOTONES NUMÉRICOS (Recintos 1 al 15) -->
+      <button class="hotspot-btn" data-recinto="1" style="left: 27.0%; top: 48.9%;">1</button>
+      <button class="hotspot-btn" data-recinto="2" style="left: 26.0%; top: 58.0%;">2</button>
+      <button class="hotspot-btn" data-recinto="3" style="left: 18.0%; top: 57.0%;">3</button>
+      <button class="hotspot-btn" data-recinto="4" style="left: 14.0%; top: 62.8%;">4</button>
+      <button class="hotspot-btn" data-recinto="5" style="left: 10.7%; top: 52.7%;">5</button>
+      <button class="hotspot-btn" data-recinto="6" style="left: 23.0%; top: 41.8%;">6</button>
+      <button class="hotspot-btn" data-recinto="7" style="left: 29.6%; top: 35.0%;">7</button>
+      <button class="hotspot-btn" data-recinto="8" style="left: 41.0%; top: 34.0%;">8</button>
+      <button class="hotspot-btn" data-recinto="9" style="left: 38.0%; top: 30.0%;">9</button>
+      <button class="hotspot-btn" data-recinto="10" style="left: 31.0%; top: 21.7%;">10</button>
+      <button class="hotspot-btn" data-recinto="11" style="left: 47.0%; top: 35.8%;">11</button>
+      <button class="hotspot-btn" data-recinto="12" style="left: 56.0%; top: 35.0%;">12</button>
+      <button class="hotspot-btn" data-recinto="13" style="left: 59.5%; top: 32.5%;">13</button>
+      <button class="hotspot-btn" data-recinto="14" style="left: 64.0%; top: 28.4%;">14</button>
+      <button class="hotspot-btn" data-recinto="15" style="left: 44.0%; top: 28.0%;">15</button>
+
+      <!-- ÁREAS INTERACTIVAS INVISIBLES SOBRE LOS DIBUJOS DEL MAPA -->
+      <div class="map-area-btn" data-service="boleteria" style="left: 49.0%; top: 60.0%; width: 6%; height: 4%;"></div>
+      <div class="map-area-btn" data-service="entrada" style="left: 55.0%; top: 63.0%; width: 4%; height: 2%;"></div>
+      <div class="map-area-btn" data-service="guardia" style="left: 38.0%; top: 41.5%; width: 5%; height: 3%;"></div>
+      <div class="map-area-btn" data-service="banos" style="left: 44.0%; top: 40.0%; width: 4%; height: 3%;"></div>
+      <div class="map-area-btn" data-service="admin1" style="left: 52.0%; top: 43.5%; width: 7%; height: 3%;"></div>
+      <div class="map-area-btn" data-service="reserva" style="left: 55.0%; top: 39.0%; width: 5%; height: 3%;"></div>
+      <div class="map-area-btn" data-service="juegos" style="left: 75.0%; top: 32.0%; width: 6%; height: 4%;"></div>
+      <div class="map-area-btn" data-service="merendero1" style="left: 36.0%; top: 48.9%; width: 23%; height: 4%;"></div>
+      <div class="map-area-btn" data-service="admin2" style="left: 63.0%; top: 40.8%; width: 6%; height: 2%;"></div>
+      <div class="map-area-btn" data-service="merendero2" style="left: 69.0%; top: 36.0%; width: 6%; height: 4%;"></div>
+      <div class="map-area-btn" data-service="merendero3" style="left: 80.0%; top: 36.0%; width: 6%; height: 3%;"></div>
+      <div class="map-area-btn" data-service="entrada1" style="left: 32.0%; top: 43.5%; width: 4%; height: 3%;"></div>
+      <div class="map-area-btn" data-service="entrada2" style="left: 48.0%; top: 37.0%; width: 5%; height: 3%;"></div>
+
+    </div>
+  </main>
+
+  <!-- Ventana Modal Principal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="close-btn" class="close-btn" aria-label="Cerrar">&times;</button>
+      <div id="modal-header">
+        <span id="modal-recinto-num" class="recinto-badge"></span>
+        <h2 id="modal-title">Recinto</h2>
+      </div>
+      <div id="animales-container" class="animales-list"></div>
+    </div>
+  </div>
+
+  <!-- Ventana Modal de Ayuda -->
+  <div id="help-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="close-help-btn" class="close-btn">&times;</button>
+      <h2 id="help-title" style="margin-bottom: 15px; color: #2e7d32;">Guía del Mapa</h2>
+      <audio id="help-audio" controls style="width: 100%; margin-bottom: 15px;"></audio>
+      <div id="help-body" style="font-size: 0.95rem; line-height: 1.6; color: #333;"></div>
+    </div>
+  </div>
+
+  <!-- Modal para Zoom de Imágenes -->
+  <div id="image-modal">
+    <button class="close-zoom">&times;</button>
+    <img id="img-zoomed" src="" alt="Imagen Ampliada">
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

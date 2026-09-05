@@ -1,0 +1,378 @@
+/* --- RESET GENERAL --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Permitimos el flujo natural y limpio de la página */
+html, body {
+  background-color: #121814;
+  color: #333;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- HEADER STICKY (Anclado perfectamente arriba) --- */
+.app-header {
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+  color: white;
+  padding: 10px 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999; /* Siempre por encima del mapa y los elementos */
+}
+
+.app-header h1 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.app-header p {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  margin: 2px 0;
+}
+
+.header-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.header-titles {
+  text-align: left;
+}
+
+.header-logo-side {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.header-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.locate-btn-header {
+  background-color: #2e7d32;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 5px 12px;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.locate-btn-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background-color: #388e3c;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.map-container img,
+.map-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- HOTSPOTS Y ÁREAS --- */
+.hotspot-btn {
+  position: absolute;
+  width: 4.5vw;
+  height: 4.5vw;
+  min-width: 26px;
+  min-height: 26px;
+  max-width: 42px;
+  max-height: 42px;
+  font-size: clamp(10px, 2vw, 15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background-color: #2e7d32;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
+  z-index: 3;
+}
+
+.hotspot-btn:hover {
+  background-color: #1b5e20;
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 10;
+}
+
+.map-area-btn {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
+  transition: background-color 0.2s;
+}
+
+.map-area-btn:hover {
+  background-color: rgba(46, 125, 50, 0.15);
+  border: 1px dashed #2e7d32;
+  border-radius: 6px;
+}
+
+/* --- MARCADOR GPS --- */
+.user-marker {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: #007bff;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  pointer-events: none;
+  transition: top 0.3s ease, left 0.3s ease;
+}
+
+.user-marker.hidden {
+  display: none !important;
+}
+
+.user-marker::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+  border: 2px solid #007bff;
+  animation: pulse-radar 1.5s infinite;
+}
+
+@keyframes pulse-radar {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* --- VENTANAS MODALES --- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20000;
+  padding: 16px;
+  animation: fadeIn 0.25s ease;
+}
+
+.modal.hidden {
+  display: none !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 20px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: #f0f2f5;
+  border: none;
+  font-size: 1.4rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #555;
+  transition: background 0.2s;
+}
+
+.close-btn:hover {
+  background: #e4e6eb;
+  color: #000;
+}
+
+#modal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #eef0f2;
+  padding-bottom: 10px;
+}
+
+.recinto-badge {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#modal-title {
+  font-size: 1.3rem;
+  color: #1a1a1a;
+}
+
+.animales-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.animal-card {
+  background: #f8f9fa;
+  border: 1px solid #eef0f2;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.animal-card h3 {
+  font-size: 1.05rem;
+  color: #2e7d32;
+  margin-bottom: 8px;
+}
+
+.animal-img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  background-color: #111;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: block;
+  cursor: zoom-in;
+  transition: transform 0.2s;
+}
+
+.animal-img:hover {
+  transform: scale(1.02);
+}
+
+.animal-audio {
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 30px;
+}
+
+/* --- LIGHTBOX --- */
+#image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 30000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 20px;
+}
+
+#image-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#image-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+#image-modal .close-zoom {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+#image-modal .close-zoom:hover {
+  opacity: 1;
+}
