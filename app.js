@@ -6,8 +6,15 @@ let currentLang = 'es'; // Idioma por inicialización
 
 const textosUI = {
   es: {
-    sub1: "Circuito Autoguiado - Toca cada número para explorar",
-    sub2: "Servicios - Toca cada servicio para explorar",
+    sub1: "Bienvenidos a la Reserva Experimental Horco Molle, de la Facultad de Ciencias Naturales e Instituto Miguel Lillo.",
+    sub2: "Antes de comenzar el recorrido, te invitamos a conocer algunas indicaciones que nos ayudarán a cuidar a los animales y a disfrutar mejor de la visita.",
+    sub3: "Los animales reciben dietas específicas, preparadas de acuerdo con sus necesidades y bajo indicación de profesionales. No necesitan que los alimentes. Por eso, te pedimos que no ingreses al circuito con alimentos sólidos ni les ofrezcas ningún tipo de comida.",
+    sub4: "Durante todo el recorrido, mantené la distancia indicada por las vallas. Es importante para tu seguridad, pero también para preservar la tranquilidad de los animales.",
+    sub5: "Recordá que ellos deciden cuándo mostrarse. Si algún animal está descansando, escondido o prefiere mantenerse alejado, respetá su espacio y no intentes llamar su atención ni molestarlo. Su bienestar es una prioridad en este lugar.",
+    sub6: "Recorré el circuito con tranquilidad, hablá en voz baja y aprovechá para observar y escuchar. Los sonidos, los movimientos y los pequeños detalles también forman parte de la experiencia. Respetá, además, el paseo de los demás visitantes.",
+    sub7: "Por último, depositá los residuos únicamente en los cestos señalizados y ayudanos a mantener limpio el circuito.",
+    sub8: "Estás ingresando a un espacio dedicado al cuidado, la educación y la conservación de la fauna. Tu comportamiento también forma parte de ese cuidado.",
+    sub9: "¡Disfrutá de la visita y gracias por tu colaboración!",
     ubicacionBtn: "📍 Mi Ubicación",
     buscandoGPS: "Buscando señal GPS...",
     gpsActivo: "📍 GPS Activo (Desactivar)",
@@ -19,8 +26,15 @@ const textosUI = {
     ayudaBtn: "❓ Ayuda"
   },
   en: {
-    sub1: "Self-Guided Tour - Tap each number to explore",
-    sub2: "Services - Tap each service to explore",
+    sub1: "Welcome to the Experimental Reserve Horco Molle, of the Faculty of Natural Sciences and Miguel Lillo Institute.",
+    sub2: "Before starting the tour, we invite you to learn some guidelines that will help us care for the animals and enjoy the visit better.",
+    sub3: "Animals receive specific diets, prepared according to their needs and under the guidance of professionals. They do not need to be fed. Therefore, we ask that you do not enter the circuit with solid food or offer any type of food to the animals.",
+    sub4: "During the entire tour, maintain the distance indicated by the fences. This is important for your safety, but also to preserve the tranquility of the animals.",
+    sub5: "Remember that they decide when to show themselves. If an animal is resting, hidden or prefers to stay away, respect their space and do not try to get their attention or disturb them. Their well-being is a priority in this place.",
+    sub6: "Walk through the circuit calmly, speak in a low voice and take advantage to observe and listen. The sounds, movements and small details also form part of the experience. Respect, in addition, the walk of other visitors.",
+    sub7: "Finally, deposit waste only in the designated bins and help us keep the circuit clean.",
+    sub8: "You are entering a space dedicated to the care, education and conservation of wildlife. Your behavior also forms part of that care.",
+    sub9: "Enjoy the visit and thank you for your collaboration!",
     ubicacionBtn: "📍 My Location",
     buscandoGPS: "Searching for GPS signal...",
     gpsActivo: "📍 GPS Active (Disable)",
