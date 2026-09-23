@@ -60,6 +60,13 @@ const userMarker = document.getElementById('user-marker');
 const langToggleBtn = document.getElementById('lang-toggle-btn');
 const txtSub1 = document.getElementById('txt-sub1');
 const txtSub2 = document.getElementById('txt-sub2');
+const txtSub3 = document.getElementById('txt-sub3');
+const txtSub4 = document.getElementById('txt-sub4');
+const txtSub5 = document.getElementById('txt-sub5');
+const txtSub6 = document.getElementById('txt-sub6');
+const txtSub7 = document.getElementById('txt-sub7');
+const txtSub8 = document.getElementById('txt-sub8');
+const txtSub9 = document.getElementById('txt-sub9');
 
 let watchId = null;
 let isTracking = false;
