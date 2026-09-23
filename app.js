@@ -819,6 +819,13 @@ if (langToggleBtn) {
     langToggleBtn.textContent = textosUI[currentLang].btnLangText;
     if (txtSub1) txtSub1.textContent = textosUI[currentLang].sub1;
     if (txtSub2) txtSub2.textContent = textosUI[currentLang].sub2;
+    if (txtSub3) txtSub3.textContent = textosUI[currentLang].sub3;
+    if (txtSub4) txtSub4.textContent = textosUI[currentLang].sub4;
+    if (txtSub5) txtSub5.textContent = textosUI[currentLang].sub5;
+    if (txtSub6) txtSub6.textContent = textosUI[currentLang].sub6;
+    if (txtSub7) txtSub7.textContent = textosUI[currentLang].sub7;
+    if (txtSub8) txtSub8.textContent = textosUI[currentLang].sub8;
+    if (txtSub9) txtSub9.textContent = textosUI[currentLang].sub9;
 
     const helpBtnElement = document.getElementById('help-btn');
     if (helpBtnElement) {
